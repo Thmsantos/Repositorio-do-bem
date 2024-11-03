@@ -26,7 +26,7 @@ public class AlimentoController {
 
     @GetMapping("/oi")
     public String getString() {
-            return 'oi';
+            return "oi";
     }
 
     @PutMapping("/updateAlimento/{alimentoId}")
