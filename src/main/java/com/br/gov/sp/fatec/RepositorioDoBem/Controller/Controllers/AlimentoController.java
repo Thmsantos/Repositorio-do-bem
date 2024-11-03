@@ -24,6 +24,11 @@ public class AlimentoController {
             return alimentoService.getAlimento(alimentoId);
     }
 
+    @GetMapping("/oi")
+    public String getString() {
+            return 'oi';
+    }
+
     @PutMapping("/updateAlimento/{alimentoId}")
     public Alimento updateAlimento(@RequestBody Alimento alimento, @PathVariable String alimentoId) {
         return alimentoService.updateAlimento(alimento, alimentoId);
