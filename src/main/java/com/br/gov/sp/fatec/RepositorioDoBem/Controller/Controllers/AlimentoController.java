@@ -1,5 +1,6 @@
 package com.br.gov.sp.fatec.RepositorioDoBem.Controller.Controllers;
 
+import com.br.gov.sp.fatec.RepositorioDoBem.Controller.Service.ResponseDTO;
 import com.br.gov.sp.fatec.RepositorioDoBem.Model.Domain.Alimento;
 import com.br.gov.sp.fatec.RepositorioDoBem.Controller.Service.AlimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,14 @@ public class AlimentoController {
     private AlimentoService alimentoService;
 
     @PostMapping("/saveAlimento")
-    public Alimento saveAlimento(@RequestBody Alimento alimento) {
-        return alimentoService.saveAlimento(alimento);
+    public ResponseEntity<ResponseDTO> saveAlimento(@RequestBody Alimento alimento) {
+        ResponseDTO response = alimentoService.saveAlimento(alimento);
+        
+        if (response.getResponseBoolean()) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(400).body(response); 
+        }
     }
 
     @GetMapping("/getAlimento/{alimentoId}")

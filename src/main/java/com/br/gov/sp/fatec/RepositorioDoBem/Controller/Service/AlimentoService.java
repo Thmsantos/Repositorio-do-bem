@@ -13,8 +13,19 @@ public class AlimentoService {
     @Autowired
     private AlimentoRepository alimentoRepository;
 
-    public Alimento saveAlimento(Alimento alimento) {
-        return alimentoRepository.save(alimento);
+    public ResponseDTO saveAlimento(Alimento alimento) {
+        ResponseDTO res = new ResponseDTO();
+        
+        Alimento savedAlimento = alimentoRepository.save(alimento);
+        
+        if (savedAlimento != null) {
+            res.setResponseData(savedAlimento);
+            res.setResponseBoolean(true);
+        } else {
+            res.setResponseBoolean(false);
+        }
+        
+        return res;
     }
 
     public Alimento getAlimento(String alimentoId) {
